@@ -12,7 +12,10 @@
             padding: 10px;
             background-color: #eee;
         }
-
+        line{
+            border: 0;
+            border-top: 2px dashed ;
+        }
         header {
             padding: 30px;
             text-align: center;
