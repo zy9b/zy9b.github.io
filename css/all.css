@@ -12,6 +12,16 @@
             padding: 10px;
             background-color: #eee;
         }
+        @font-face {
+            font-family: 'poem_text';
+            src: url('../ttf/poem_text.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        poem{
+            font-family: poem_text;
+            text-align: center;
+        }
         line{
             border: 0;
             border-top: 2px dashed ;
