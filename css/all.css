@@ -19,7 +19,7 @@
             font-style: normal;
         }
         poem{
-            font-family: poem_text;
+            font-family: 'poem_text';
             text-align: center;
         }
         line{
