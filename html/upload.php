@@ -11,7 +11,7 @@ function response($success, $error) {
 }
 
 //检查请求是否是POST方法
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
     //检查请求是否包含图片文件和作者名字
     if (isset($_FILES["image"]) && isset($_POST["author"])) {
         //获取图片文件和作者名字
