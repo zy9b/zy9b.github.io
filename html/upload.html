@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon">
+    <title>上传图片</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            background-color: #eee;
+        }
+
+        header {
+            padding: 30px;
+            text-align: center;
+            background: white;
+        }
+
+        nav {
+            overflow: hidden;
+            background-color: lightblue;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: black;
+            background-color: rgb (0, 183, 255);
+        }
+
+        .leftcolumn {
+            float: left;
+            width: 75%;
+        }
+
+        .rightcolumn {
+            float: left;
+            width: 25%;
+            background-color: #f1f1f1;
+            padding-left: 20px;
+        }
+
+        img {
+            background-color: white;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        main:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        footer {
+            padding: 20px;
+            text-align: center;
+            background: #ddd;
+            margin-top: 20px;
+        }
+
+        @media screen and (max-width: 1024px) {
+
+            .leftcolumn,
+            .rightcolumn {
+                width: 100%;
+                padding: 0;
+            }
+        }
+
+        @media screen and (max-width: 512px) {
+            nav a {
+                float: none;
+                width: 100%;
+            }
+        }
+    </style>
+    <script>
+        //定义一个函数，用于上传图片和作者
+        function uploadImage() {
+            //获取图片文件和作者名字的输入框
+            var imageInput = document.getElementById("imageInput");
+            var authorInput = document.getElementById("authorInput");
+            //检查输入是否为空
+            if (imageInput.files.length == 0 || authorInput.value == "") {
+                alert("请输入图片文件和作者名字");
+                return false; //终止函数
+            }
+            //获取图片文件的名称和大小
+            var imageName = imageInput.files[0].name; //例如 "cat.jpg"
+            var imageSize = imageInput.files[0].size; //例如 123456
+            //检查图片文件是否符合格式和大小限制
+            var imageExtension = imageName.split(".").pop().toLowerCase(); //例如 "jpg"
+            var allowedExtensions = ["jpg", "png", "gif"]; //允许的图片格式
+            var maxSize = 1024 * 1024; //允许的最大图片大小，单位是字节
+            if (!allowedExtensions.includes(imageExtension)) {
+                alert("图片格式不支持，请上传jpg, png或gif格式的图片");
+                return false; //终止函数
+            }
+            if (imageSize > maxSize) {
+                alert("图片大小超过限制，请上传不超过1MB的图片");
+                return false; //终止函数
+            }
+            //创建一个FormData对象，用于存储图片文件和作者名字
+            var formData = new FormData();
+            formData.append("image", imageInput.files[0]); //添加图片文件
+            formData.append("author", authorInput.value); //添加作者名字
+            //创建一个XMLHttpRequest对象，用于发送请求和接收响应
+            var xhr = new XMLHttpRequest();
+            //设置请求的方法和地址，这里使用POST方法，地址是main/image/imgs_bqb/upload.php，这个文件是用于处理上传请求的后端脚本
+            xhr.open("POST", "main/image/imgs_bqb/upload.php");
+            //设置请求的回调函数，当请求完成时会执行这个函数
+            xhr.onload = function () {
+                //检查响应的状态码是否是200，表示成功
+                if (xhr.status == 200) {
+                    //解析响应的内容，这里是一个JSON字符串，包含了上传结果的信息
+                    var response = JSON.parse(xhr.responseText);
+                    //检查上传结果是否成功
+                    if (response.success) {
+                        //如果成功，弹出提示框，并刷新页面
+                        alert("上传成功，感谢你的贡献");
+                        window.location.reload();
+                    } else {
+                        //如果失败，弹出提示框，显示错误信息
+                        alert("上传失败，原因是：" + response.error);
+                    }
+                } else {
+                    //如果状态码不是200，表示请求出错，弹出提示框
+                    alert("请求出错，状态码是：" + xhr.status);
+                }
+            };
+            //发送请求，传入FormData对象
+            xhr.send(formData);
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>上传图片</h1>
+        <p>请上传你的图片和作者名字，图片格式只支持jpg, png或gif，图片大小不超过1MB</p>
+    </header>
+    <nav>
+        <a> 九班事迹 </a>
+        <a href="html/1.html">实时新闻</a>
+        <a> 伟人榜 </a>
+        <a style="float: right;"> 时间线 </a>
+    </nav>
+    <main>
+        <div class="leftcolumn">
+            <div class="card">
+                <h2>选择图片文件</h2>
+                <input type="file" id="imageInput" accept="image/*">
+                <h2>输入作者名字</h2>
+                <input type="text" id="authorInput" placeholder="例如：@李林玥">
+                <button onclick="uploadImage()">上传</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        Bug 反馈：1410746076
+    </footer>
+</body>
+
+</html>
