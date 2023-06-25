@@ -9,7 +9,6 @@ function response($success, $error) {
     //将数组转换为JSON字符串，并输出
     echo json_encode($response);
 }
-
 //检查请求是否是POST方法
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     //检查请求是否包含图片文件和作者名字

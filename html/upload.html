@@ -134,9 +134,6 @@
                 if (xhr.status == 200) {
                     //解析响应的内容，这里是一个JSON字符串，包含了上传结果的信息
                     alert(xhr.responseText);
-                    alert(xhr.responseType);
-                    alert(xhr.responseURL);
-                    alert(xhr.responseXML);
                     var response = JSON.parse(xhr.responseText);
                     //检查上传结果是否成功
                     if (response.success) {
