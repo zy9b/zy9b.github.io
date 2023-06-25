@@ -126,7 +126,7 @@
             formData.append("author", authorInput.value); //添加作者名字
             //创建一个XMLHttpRequest对象，用于发送请求和接收响应
             var xhr = new XMLHttpRequest();
-            //设置请求的方法和地址，这里使用POST方法，地址是main/imagegs_bqb/upload.php，这个/im文件是用于处理上传请求的后端脚本
+            //设置请求的方法和地址，这里使用POST方法，地址是main/image/imgs_bqb/upload.php，这个文件是用于处理上传请求的后端脚本
             xhr.open("POST", "upload.php");
             //设置请求的回调函数，当请求完成时会执行这个函数
             xhr.onload = function () {

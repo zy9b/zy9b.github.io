@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit(); //终止脚本
         }
         //定义一个目录，用于存储上传的图片文件
-        $uploadDir = "main/image/imgs_bqb/";
+        $uploadDir = "../image/imgs_bqb/";
         //定义一个文件名，用于重命名上传的图片文件，避免重复或乱码，这里使用当前时间戳加上原始扩展名
         $uploadName = time() . "." . $imageExtension; //例如 "1637823456.jpg"
         //定义一个完整的路径，用于移动上传的图片文件到目标目录
