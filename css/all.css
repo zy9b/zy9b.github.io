@@ -21,7 +21,7 @@
 }
 line{
     border: 0;
-    border-top: 2px dashed ;
+    border-top: 5px dashed ;
 }
 header {
     padding: 30px;
@@ -55,6 +55,10 @@ header {
     text-align: center;
 }.card {
     text-align: center;
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+}.card-n {
     background-color: white;
     padding: 20px;
     margin-top: 20px;
